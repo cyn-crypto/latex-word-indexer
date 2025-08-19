@@ -37,5 +37,5 @@ The script:
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/yourusername/latex-word-indexer.git
+git clone https://github.com/cyn-crypto/latex-word-indexer.git
 cd latex-word-indexer
