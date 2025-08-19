@@ -1,44 +1,41 @@
 # 🧠 latex-word-indexer
 
-**Automatically insert `\index{}` commands into your LaTeX documents using a CSV word list. Save time, stay consistent, and simplify your indexing process.**
+**Automatically index words in your LaTeX documents using a simple Python 3 script and a CSV word list.**
 
----
-
-## 📌 Overview
-
-Indexing in LaTeX can be tedious — especially when you're dealing with long documents like theses, technical books, or research papers. `latex-word-indexer` is a Python 3 tool that scans your LaTeX file and inserts `\index{}` commands for words listed in a CSV file.
-
-No more manually tagging entries. Just give it your word list and LaTeX source — it does the rest.
+Save time and avoid manual tagging by inserting `\index{}` commands programmatically — cleanly and accurately.
 
 ---
 
 ## 🚀 Features
 
-- ✅ **Automatic indexing**: Add `\index{}` commands throughout your LaTeX file
-- 📄 **CSV input**: Easily manage index terms in a spreadsheet
-- ⚙️ **Customizable**: Clean Python code, easy to tweak
-- 💨 **Fast**: Processes large files in seconds
-- 🧪 **Accurate**: Avoids re-indexing already tagged terms
+- ✅ Automatically inserts `\index{}` entries into your LaTeX `.tex` file
+- 📄 Reads index terms from a CSV file (multiple columns or rows)
+- 🧠 Avoids duplicating already indexed words
+- 🧪 Case-insensitive matching
+- ⚙️ Sorts words by length to avoid partial matches (e.g., "net" before "network")
+- 💡 Outputs a new LaTeX file with all index tags added
 
 ---
 
 ## 📂 How It Works
 
-### You provide:
-- A **CSV file** with words or phrases to be indexed (one per line or as comma-separated)
-- A **LaTeX `.tex` file** where those words should be indexed
+You provide:
+- `INDEX_LIST.csv` — a CSV file with words/phrases to index  
+- `MAIN.tex` — your LaTeX source file
 
-### The script:
-- Scans the LaTeX file
-- Searches for occurrences of each word
-- Inserts `\index{word}` right after the first occurrence of each word
-- Outputs a modified LaTeX file ready for use with `makeindex` or `imakeidx`
+The script:
+1. Loads and cleans the word list
+2. Finds the **first appearance** of each word in the LaTeX file
+3. Inserts `\index{Word}` **right after** the word (preserving casing)
+4. Skips words already indexed with `\index{}` nearby
+5. Writes the result to `main_indexed.tex`
 
 ---
 
-## 📦 Installation
+## 🛠 Usage
+
+### 1. Clone the repository
 
 ```bash
 git clone https://github.com/yourusername/latex-word-indexer.git
 cd latex-word-indexer
-python3 indexer.py
